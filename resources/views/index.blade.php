@@ -12,22 +12,34 @@
         <div class="my-3 py-3">
           <h2 class="display-5 font-weight-normal">CAMPEONATOS</h2>
         </div>
-        <button type="button" class="btn btn-primary" >Cadastrar</button>
-        <button type="button" class="btn btn-primary" >Exibir</button>
+        <button type="button" class="btn btn-primary"  >
+        <a href="{{route('novoCampeonato')}}">Cadastrar</a>
+        </button>
+        <button type="button" class="btn btn-primary" >
+        <a href="{{route('exibeCampeonatos')}}">Exibir</a>
+        </button>
       </div>
       <div class=" mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white"style="background-color: green;">
         <div class="my-3 p-3">
           <h2 class="display-5 font-weight-normal">TIMES</h2>
         </div>
-        <button type="button" class="btn btn-success">Cadastrar</button>
-        <button type="button" class="btn btn-success">Exibir</button>
+        <button type="button" class="btn btn-success">
+        <a href="{{route('novoTime')}}">Cadastrar</a>
+        </button>
+        <button type="button" class="btn btn-success">
+        <a href="{{route('exibeTimes')}}">Exibir</a>
+        </button>
       </div>
       <div class="mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white" style="background-color: #d8a200;">
         <div class="my-3 py-3">
           <h2 class="display-5 font-weight-normal">JOGADORES</h2>
         </div>
-        <button type="button" class="btn btn-warning text-white">Cadastrar</button>
-        <button type="button" class="btn btn-warning text-white">Exibir</button>
+        <button type="button" class="btn btn-warning text-white">
+        <a href="{{route('novoJogador')}}">Cadastrar</a>
+        </button>
+        <button type="button" class="btn btn-warning text-white">
+        <a href="{{route('exibeJogadores')}}">Exibir</a>
+        </button>
       </div>
   </div>
   @endsection

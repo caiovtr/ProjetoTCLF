@@ -7,3 +7,15 @@ div {
 button {
     margin-bottom: 10%;
 }
+
+img {
+    height: 40px;
+}
+
+.nav-link {
+    font-size: x-large;
+}
+
+a {
+    color: #FFF;
+}
