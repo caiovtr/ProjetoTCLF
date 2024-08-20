@@ -17,8 +17,8 @@
             </div>
             <hr>
             <div class="form-group">
-                <label for="tipo">País:</label>
-                <input type="tipo" class="form-control" name="tipo" 
+                <label for="pais">País:</label>
+                <input type="text" class="form-control" name="pais" 
                        placeholder="Informe o país do time">
             </div>
             <hr>

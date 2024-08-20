@@ -40,3 +40,6 @@ Route::post('/jogador', [App\Http\Controllers\ControllerJogador::class, 'store']
 Route::get('/jogador/edit', [App\Http\Controllers\ControllerJogador::class, 'edit'])->name('editarJogador');
 Route::post('/jogador/{id}', [App\Http\Controllers\ControllerJogador::class, 'update'])->name('atualizaJogador');
 Route::get('/jogador/apagar/{id}', [App\Http\Controllers\ControllerJogador::class, 'destroy'])->name('deletaJogador');
+
+//Rotas ControllerTimeCampeonato
+Route::get('/timescampeonato/detalhes/{id}', [App\Http\Controllers\ControllerTimeCampeonato::class, 'index'])->name('exibeTimesCampeonato');

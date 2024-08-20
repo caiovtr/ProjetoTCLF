@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\mdTime;
 
 class ControllerTime extends Controller
 {
     public function index()
     {
-        $dados = Time::all();
-        return view('exibeTime', compact('dados'));
+        $dados = mdTime::all();
+        return view('exibeTimes', compact('dados'));
     }
 
     /**
@@ -25,7 +26,7 @@ class ControllerTime extends Controller
      */
     public function store(Request $request)
     {
-        $dados = new Time();
+        $dados = new mdTime();
         $dados->Nome = $request->input('nome');
         $dados->Pais = $request->input('pais');
         if($dados->save())
@@ -46,7 +47,7 @@ class ControllerTime extends Controller
      */
     public function edit(string $id)
     {
-        $dados = Time::find($id);
+        $dados = mdTime::find($id);
         if(isset($dados))
             return view('editaTime', compact('dados'));
         return redirect('/time')->with('danger', 'Cadastro do time não localizado!');
@@ -57,7 +58,7 @@ class ControllerTime extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $dados = Time::find($id);
+        $dados = mdTime::find($id);
         if(isset($dados)){
             $dados->Nome = $request->input('nome');
             $dados->Pais = $request->input('pais');
@@ -72,9 +73,9 @@ class ControllerTime extends Controller
      */
     public function destroy(string $id)
     {
-        $dados = Time::find($id);
+        $dados = mdTime::find($id);
         if(isset($dados)){
-            $times = TimeJogador::where('time_id', '=', $id)->first();
+            $times = mdTimeJogador::where('time_id', '=', $id)->first();
             if(!isset($times)){
                 $dados->delete();
                 return redirect('/time')->with('success', 'Cadastro do time deletado com sucesso!!');

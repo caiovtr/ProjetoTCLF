@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ModelTimeJogador extends Model
+class mdTimeCampeonato extends Model
 {
     use HasFactory;
-    protected $fillable = ['autor_id', 'livro_id'];
+    protected $fillable = ['time_id', 'campeonato_id'];
     public function campeonato(){
-        return $this->belongsTo('App\Models\Campeonato');
+        return $this->belongsTo('App\Models\mdCampeonato');
     }
     public function time(){
-        return $this->belongsTo('App\Models\Time');
+        return $this->belongsTo('App\Models\mdTime');
     }
 }

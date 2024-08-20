@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\mdJogador;
 
 class ControllerJogador extends Controller
 {
     public function index()
     {
-        $dados = Jogador::all();
-        return view('exibeJogador', compact('dados'));
+        $dados = mdJogador::all();
+        return view('exibeJogadores', compact('dados'));
     }
 
     /**
@@ -25,10 +26,10 @@ class ControllerJogador extends Controller
      */
     public function store(Request $request)
     {
-        $dados = new Jogador();
+        $dados = new mdJogador();
         $dados->Nome = $request->input('nome');
         $dados->Posicao = $request->input('posicao');
-        $dados->Idade = $request->input('Idade');
+        $dados->Idade = $request->input('idade');
         $dados->Numero = $request->input('numero');
         if($dados->save())
             return redirect('/jogador')->with('success', 'Jogador cadastrado com sucesso!!');
@@ -48,7 +49,7 @@ class ControllerJogador extends Controller
      */
     public function edit(string $id)
     {
-        $dados = Jogador::find($id);
+        $dados = mdJogador::find($id);
         if(isset($dados))
             return view('editaJogador', compact('dados'));
         return redirect('/jogador')->with('danger', 'Cadastro do jogador não localizado!');
@@ -59,7 +60,7 @@ class ControllerJogador extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $dados = Jogador::find($id);
+        $dados = mdJogador::find($id);
         if(isset($dados)){
             $dados->Nome = $request->input('nome');
             $dados->Posicao = $request->input('posicao');
@@ -76,9 +77,9 @@ class ControllerJogador extends Controller
      */
     public function destroy(string $id)
     {
-        $dados = Jogador::find($id);
+        $dados = mdJogador::find($id);
         if(isset($dados)){
-            $jogadores = TimeJogador::where('jogador_id', '=', $id)->first();
+            $jogadores = mdTimeJogador::where('jogador_id', '=', $id)->first();
             if(!isset($jogadores)){
                 $dados->delete();
                 return redirect('/jogador')->with('success', 'Cadastro do jogador deletado com sucesso!!');

@@ -3,29 +3,29 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Time;
-use App\Models\Campeonato;
-use App\Models\TimeCampeonato;
+use App\Models\mdTime;
+use App\Models\mdCampeonato;
+use App\Models\mdTimeCampeonato;
 use Illuminate\Support\Facades\DB;
 
-class ControladorTimeCampeonato extends Controller
+class ControllerTimeCampeonato extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     private $TimeCampeonato;
 
-    public function __construct(TimeCampeonato $item){
+    public function __construct(mdTimeCampeonato $item){
         $this->TimeCampeonato = $item;
     }
 
     public function index($id)
     {
         $dados = $this->TimeCampeonato->where('campeonato_id', $id)->get();
-        $campeonato = Campeonato::find($id);
+        $campeonato = mdCampeonato::find($id);
         $dados->Nome = $campeonato->Nome;
         foreach($dados as $item){
-            $time = Time::find($item->time_id);
+            $time = mdTime::find($item->time_id);
             $item->Nome = $time->Nome;
         }
         return view('exibeTimesCampeonato', compact('dados'));
@@ -44,7 +44,7 @@ class ControladorTimeCampeonato extends Controller
      */
     public function store(Request $request)
     {
-        $dados = new TimeCampeonato();
+        $dados = new mdTimeCampeonato();
         $dados->time_id = $request->input('time');
         $dados->campeonato_id = $request->input('campeonato_id');
         if($dados->save())
@@ -81,7 +81,7 @@ class ControladorTimeCampeonato extends Controller
      */
     public function destroy(string $id)
     {
-        $dados = TimeCampeonato::find($id);
+        $dados = mdTimeCampeonato::find($id);
         if(isset($dados)){
             $dados->delete();
             return redirect('/campeonato')->with('success', 'Time do campeonato deletado com sucesso!!');
