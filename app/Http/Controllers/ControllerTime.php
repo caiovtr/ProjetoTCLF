@@ -49,7 +49,7 @@ class ControllerTime extends Controller
     {
         $dados = mdTime::find($id);
         if(isset($dados))
-            return view('editaTime', compact('dados'));
+            return view('editarTime', compact('dados'));
         return redirect('/time')->with('danger', 'Cadastro do time não localizado!');
     }
 
@@ -75,13 +75,8 @@ class ControllerTime extends Controller
     {
         $dados = mdTime::find($id);
         if(isset($dados)){
-            $times = mdTimeJogador::where('time_id', '=', $id)->first();
-            if(!isset($times)){
                 $dados->delete();
                 return redirect('/time')->with('success', 'Cadastro do time deletado com sucesso!!');
-            }else{
-                return redirect('/time')->with('danger', 'Cadastro não pode ser excluído!!');
-            } 
         }else{
             return redirect('/time')->with('danger', 'Cadastro não localizado!!');
         } 

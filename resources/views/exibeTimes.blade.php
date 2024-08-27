@@ -25,8 +25,8 @@
                         <td>{{ $i['Nome'] }}</td>
                         <td>{{ $i['Pais'] }}</td>
                         <td style="text-align:center">
-                            <a href="/campeonato/edit/{{$i['id']}}" class="btn btn-outline-primary">Editar</a>
-                            <a href="/campeonato/apagar/{{$i['id']}}" class="btn btn-outline-danger" 
+                            <a href="/time/edit/{{$i['id']}}" class="btn btn-primary">Editar</a>
+                            <a href="/time/apagar/{{$i['id']}}" class="btn btn-danger" 
                             onclick="return confirm('Tem certeza de que deseja remover?');">Deletar</a>
                         </td>
                     </tr>  

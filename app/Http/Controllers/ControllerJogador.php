@@ -51,7 +51,7 @@ class ControllerJogador extends Controller
     {
         $dados = mdJogador::find($id);
         if(isset($dados))
-            return view('editaJogador', compact('dados'));
+            return view('editarJogador', compact('dados'));
         return redirect('/jogador')->with('danger', 'Cadastro do jogador não localizado!');
     }
 
@@ -79,13 +79,8 @@ class ControllerJogador extends Controller
     {
         $dados = mdJogador::find($id);
         if(isset($dados)){
-            $jogadores = mdTimeJogador::where('jogador_id', '=', $id)->first();
-            if(!isset($jogadores)){
                 $dados->delete();
                 return redirect('/jogador')->with('success', 'Cadastro do jogador deletado com sucesso!!');
-            }else{
-                return redirect('/jogador')->with('danger', 'Cadastro não pode ser excluído!!');
-            } 
         }else{
             return redirect('/jogador')->with('danger', 'Cadastro não localizado!!');
         } 

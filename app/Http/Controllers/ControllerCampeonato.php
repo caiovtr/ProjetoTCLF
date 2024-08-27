@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\mdCampeonato;
+use App\Models\mdTimeCampeonato;
 
 class ControllerCampeonato extends Controller
 {
@@ -49,7 +50,7 @@ class ControllerCampeonato extends Controller
     {
         $dados = mdCampeonato::find($id);
         if(isset($dados))
-            return view('editaCampeonato', compact('dados'));
+            return view('editarCampeonato', compact('dados'));
         return redirect('/campeonato')->with('danger', 'Cadastro do campeonato não localizado!');
     }
 
@@ -75,7 +76,7 @@ class ControllerCampeonato extends Controller
     {
         $dados = mdCampeonato::find($id);
         if(isset($dados)){
-            $times = mdTimeCampeonato::where('campeonato_id', '=', $id)->first();
+            $times = mdTimeCampeonato::where('campeonato_id' , '=' , $id)->first();
             if(!isset($times)){
                 $dados->delete();
                 return redirect('/campeonato')->with('success', 'Cadastro do campeonato deletado com sucesso!!');

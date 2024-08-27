@@ -21,22 +21,35 @@ class ControllerTimeCampeonato extends Controller
 
     public function index($id)
     {
-        $dados = $this->TimeCampeonato->where('campeonato_id', $id)->get();
+        $dados = mdCampeonato::find($id);
+        $timesCampeonato = mdTimeCampeonato::where('campeonato_id', $id)->get();
+       
+        foreach($timesCampeonato as $item){
+            $time = mdTime::find($item->time_id);
+            $item->idTime = $time->id;
+            $item->nomeTime = $time->Nome;
+        }
+        /*
         $campeonato = mdCampeonato::find($id);
         $dados->Nome = $campeonato->Nome;
         foreach($dados as $item){
             $time = mdTime::find($item->time_id);
             $item->Nome = $time->Nome;
         }
-        return view('exibeTimesCampeonato', compact('dados'));
+        */
+        return view('exibeTimesCampeonato', compact('dados', 'timesCampeonato'));
+
+        
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(string $id)
     {
-        //
+        $dados = mdCampeonato::find($id);
+        $times = mdTime::all();
+        return view('novoTimeCampeonato', compact('dados','times'));
     }
 
     /**
@@ -79,13 +92,9 @@ class ControllerTimeCampeonato extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $idC, $idT)
     {
-        $dados = mdTimeCampeonato::find($id);
-        if(isset($dados)){
-            $dados->delete();
-            return redirect('/campeonato')->with('success', 'Time do campeonato deletado com sucesso!!');
-        }
-        return redirect('/campeonato')->with('danger', 'Erro ao deletar time do campeonato!');
+        $dados = mdTimeCampeonato::where('campeonato_id', $idC)->where('time_id', $idT)->delete();
+        return redirect('/campeonato')->with('success', 'Time do campeonato deletado com sucesso!!');
     }
 }
